@@ -1,0 +1,22 @@
+﻿@using Entity.Concrete
+@model Product
+@{
+    ViewData["Title"] = "UpdateProduct";
+    Layout = "~/Views/Shared/UserLayout.cshtml";
+}
+
+<h1>Update Product</h1>
+
+@using (Html.BeginForm("UpdateProduct","Product",FormMethod.Post))
+{   @Html.Hidden("Product_Id")
+    <br />
+    @Html.Label("Product Name")
+    @Html.TextBoxFor(x=>x.Product_Name,new {@class= "form-control"})
+    @Html.ValidationMessageFor(x=>x.Product_Name)
+    <br />
+    @Html.Label("Product Price")
+    @Html.TextBoxFor(x=>x.Sale_Price,new {@class= "form-control"})
+    @Html.ValidationMessageFor(x=>x.Sale_Price)
+    <br />
+    <button class="btn btn-outline-secondary">Update</button>
+}

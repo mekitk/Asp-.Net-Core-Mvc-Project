@@ -1,0 +1,36 @@
+﻿@using Entity.Concrete
+@model SparePart
+
+@{
+    ViewData["Title"] = "AddPart";
+    Layout = "~/Views/Shared/UserLayout.cshtml";
+}
+
+
+
+@if (@TempData["infoaddpart"] != null)
+{
+    <div class="alert alert-info">
+    @TempData["infoaddpart"]
+</div>
+}
+<h1>Add Part</h1>
+
+@using (Html.BeginForm("AddPart","Part",FormMethod.Post))
+{ 
+    @Html.Label("Part Name")
+    @Html.TextBoxFor(x=>x.Part_Name,new {@class= "form-control"})
+    @Html.ValidationMessageFor(x=>x.Part_Name)
+    <br />
+    @Html.Label("Part Price")
+    @Html.TextBoxFor(x=>x.Part_Price,new {@class= "form-control"})
+    @Html.ValidationMessageFor(x=>x.Part_Price)
+    <br />
+      @Html.Label("Product Name")
+              
+               @Html.DropDownListFor(m => m.Product_Id, ViewBag.GetData as SelectList, new { @class = "form-control" })
+
+
+
+    <button class="btn btn-info">Save</button>
+}

@@ -1,0 +1,92 @@
+﻿@using Entity.Concrete
+@using X.PagedList
+@using X.PagedList.Mvc.Core
+@model IPagedList<Product>
+@{
+     ViewData["Title"] = "Products";
+    Layout = "~/Views/Shared/UserLayout.cshtml";
+}
+
+
+
+
+<style>
+
+    .addbutton{
+        
+            position: relative;
+            right: -8px;
+       
+    }
+</style>
+@if (@TempData["infoproductdelete"] != null)
+{
+    <div class="alert alert-info">
+    @TempData["infoproductdelete"]
+</div>
+}
+@if (@TempData["infoaddproduct"] != null)
+{
+    <div class="alert alert-info">
+    @TempData["infoaddproduct"]
+</div>
+}
+
+
+<a  href="/Product/AddProduct" class="addbutton btn btn-success">Add New Product</a>
+<table class="table table-bordered">
+    <tr>
+       
+        <th>
+            Product Name
+        </th>
+        <th>
+            Price
+        </th>
+         <th>
+            Add
+        </th>
+         <th>
+            Update
+        </th>
+         <th>
+            Delete
+        </th>
+       
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            
+
+            <td>@item.Product_Name</td>
+            <td>@item.Sale_Price</td>
+            <td><a href="/Part/AddPart/@item.Product_Id" class=" btn btn-success">Add New Part</a></td>
+            <td><a href="/Product/GetProduct/@item.Product_Id" class=" btn btn-warning">Update</a></td>
+            <td><a href="/Product/ProductDelete/@item.Product_Id" class=" btn btn-danger">Delete</a></td>
+            
+        </tr>
+        
+    }
+       <tr>
+            <td  align="center">
+                <pager list="@Model" asp-controller="Product" asp-action="Index"/>
+            </td>
+        </tr>
+</table>
+<div class="center">
+@Html.PagedListPager((IPagedList)Model,page=>Url.Action("Index",new {page}))
+</div>
+
+
+<style>
+    .center {
+        margin-left: auto;
+  margin-right: auto;
+  
+  width: 3%;
+
+ display: block;
+  
+}
+</style>

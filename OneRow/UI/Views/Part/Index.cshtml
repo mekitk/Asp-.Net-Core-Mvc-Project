@@ -1,0 +1,62 @@
+﻿@using Entity.DTO
+@model List<SparePartDTO>
+@{
+    ViewData["Title"] = "Parts";
+    Layout = "~/Views/Shared/UserLayout.cshtml";
+}
+
+
+
+
+<link href="~/lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
+
+<style>
+    .addbutton{
+        
+            position: relative;
+            right: -8px;
+       
+    }
+</style>
+@if (@TempData["infoproductdelete"] != null)
+{
+    <div class="alert alert-info">
+    @TempData["infoproductdelete"]
+</div>
+}
+
+<a  href="/Part/AddPart" class="addbutton btn btn-success">Add New Part</a>
+
+<table class="table table-bordered">
+    <tr>
+        <th>
+            Part Name
+        </th>
+        <th>
+            Price
+        </th>
+         <th>
+            Product Name
+        </th>
+  
+         <th>
+            Update
+        </th>
+         <th>
+            Delete
+        </th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.PartName</td>
+            <td>@item.Price</td>
+            <td>@item.ProductName</td>
+          
+           <td><a href="/Part/Update/@item.PartId" class=" btn btn-warning">Update</a></td>
+            <td><a href="/Part/PartDelete/@item.PartId" class=" btn btn-danger">Delete</a></td>
+        </tr>
+    }
+</table>
+
+

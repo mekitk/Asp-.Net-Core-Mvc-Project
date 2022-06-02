@@ -1,0 +1,25 @@
+﻿@using Entity.Concrete
+@model SparePart
+@{
+    ViewData["Title"] = "Update";
+    Layout = "~/Views/Shared/UserLayout.cshtml";
+}
+
+<h1>Update</h1>
+
+@using (Html.BeginForm("Update","Part",FormMethod.Post))
+{   @Html.Hidden("Part_Id")
+    <br />
+    @Html.Label("Part Name")
+    @Html.TextBoxFor(x=>x.Part_Name,new {@class= "form-control"})
+    @Html.ValidationMessageFor(x=>x.Part_Name)
+    <br />
+    @Html.Label("Part Price")
+    @Html.TextBoxFor(x=>x.Part_Price,new {@class= "form-control"})
+    @Html.ValidationMessageFor(x=>x.Part_Price)
+    <br />
+    
+       @Html.Label("Product Name")
+               @Html.DropDownListFor(m => m.Product_Id, ViewBag.PartData as SelectList, new { @class = "form-control" })
+    <button class="btn btn-outline-secondary">Update</button>
+}

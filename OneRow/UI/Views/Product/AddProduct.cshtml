@@ -1,0 +1,26 @@
+﻿@using Entity.Concrete
+@model Product
+@{
+    ViewData["Title"] = "AddProduct";
+    Layout = "~/Views/Shared/UserLayout.cshtml";
+}
+@if (@TempData["infoaddproduct"] != null)
+{
+    <div class="alert alert-info">
+    @TempData["infoaddproduct"]
+</div>
+}
+<h1>Add Product</h1>
+
+@using (Html.BeginForm("AddProduct","Product",FormMethod.Post))
+{
+    @Html.Label("Product Name")
+    @Html.TextBoxFor(x=>x.Product_Name,new {@class= "form-control"})
+    @Html.ValidationMessageFor(x=>x.Product_Name)
+    <br />
+    @Html.Label("Product Price")
+    @Html.TextBoxFor(x=>x.Sale_Price,new {@class= "form-control"})
+    @Html.ValidationMessageFor(x=>x.Product_Name)
+    <br />
+    <button class="btn btn-info">Save</button>
+}
